@@ -3,31 +3,75 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --angle: 0deg;
+  --opacity: 1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: theme(colors.grey);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  .rainbow {
+    --border-size: 0.3rem;
+    border: var(--border-size) dotted transparent;
+
+    background-image: linear-gradient(
+        to right,
+        theme(colors.grey),
+        theme(colors.grey)
+    ),
+    conic-gradient(
+        from var(--angle),
+        transparent 0deg 90deg,
+        theme(colors.pink) 90deg 180deg,
+        transparent 180deg 270deg,
+        theme(colors.green) 270deg 360deg
+    );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
 }
+
+
+
+.tooltip {
+  @apply inline-block relative;
+}
+
+.tooltip .tooltiptext {
+  @apply invisible bg-white text-center;
+  color: theme(colors.grey);
+  border-radius: 6px;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  @apply visible;
+}
+
+/* Animate when Houdini is available */
+@supports (background: paint(houdini)) {
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+}
+
+
+/*background: linear-gradient(135deg,var(--grad-1)0%,var(--grad-2)50%,var(--grad-1)100%);*/
+
+
