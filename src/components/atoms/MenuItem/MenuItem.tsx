@@ -2,7 +2,8 @@ import { SyntheticEvent } from 'react';
 
 import './item.css';
 import Link from 'next/link';
-import type { UrlObject } from 'url'
+import type { UrlObject } from 'url';
+
 type Url = string | UrlObject
 
 export interface IMenuItem {
@@ -19,8 +20,8 @@ const MenuItem = ({label, selected, menuIndex = 0, onChange, ...props}: IMenuIte
   const className = `menu-item${selected ? ' menu-item-selected' : ''}`;
   return (
     <Link className={className}
-            onClick={(e) => onChange ? onChange(e, menuIndex) : null}
-            {...props}>{label}</Link>
+          onClick={(e) => onChange ? onChange(e, menuIndex) : null}
+          {...props}>{label}</Link>
   );
 };
 

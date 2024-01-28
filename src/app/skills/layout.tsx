@@ -9,6 +9,6 @@ const ExperienceLayout = ({children}: { children: ReactNode }) => {
   return (
     <section className={'animate-fade-in'}>{children}</section>
   );
-}
+};
 
 export default ExperienceLayout;
