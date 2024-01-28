@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
-    basePath: '/personal-site/',
+    basePath: '/personal-site',
     reactStrictMode: true,
     trailingSlash: false,
     images: {
