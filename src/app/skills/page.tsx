@@ -58,7 +58,7 @@ const Skills = () => {
     <div >
       <p className={'text-lg font-medium mb-2'}>Some of the frameworks and libraries I&apos;ve been working with lately.</p>
 
-      <div className="grid grid-cols-4 gap-1">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">
         {skills.map((skill, index) => (
           <figure key={index} className="p-4 tooltip">
             <div className="tooltiptext">{skill.name}</div>
