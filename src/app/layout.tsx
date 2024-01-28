@@ -49,17 +49,17 @@ export default function RootLayout({
         <div className={'col-start-3 flex justify-end'}>
           <Link className={'cursor-pointer shrink'} href={'mailto:ariel.guzman01@gmail.com?subject=job offer'}>
             <figure className="p-1">
-              <Image className="w-8 h-8" src={'/gmail.png'} alt={'Mail'} width={'512'} height={'512'}/>
+              <Image className="w-8 h-8" src={'/personal-site/gmail.png'} alt={'Mail'} width={'512'} height={'512'}/>
             </figure>
           </Link>
           <Link className={'cursor-pointer shrink mx-5'} target={'_blank'} href={'https://github.com/arielgpe'}>
             <figure className="p-1">
-              <Image className="w-8 h-8" src={'/github.png'} alt={'github.com/arielgpe'} width={'512'} height={'512'}/>
+              <Image className="w-8 h-8" src={'/personal-site/github.png'} alt={'github.com/arielgpe'} width={'512'} height={'512'}/>
             </figure>
           </Link>
           <Link className={'cursor-pointer shrink'} target={'_blank'} href={'https://linkedin.com/in/arielgpe'}>
             <figure className="p-1">
-              <Image className="w-8 h-8" src={'/linkedin.png'} alt={'linkedin'} width={'512'} height={'512'}/>
+              <Image className="w-8 h-8" src={'/personal-site/linkedin.png'} alt={'linkedin'} width={'512'} height={'512'}/>
             </figure>
           </Link>
         </div>

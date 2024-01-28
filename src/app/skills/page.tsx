@@ -62,7 +62,7 @@ const Skills = () => {
         {skills.map((skill, index) => (
           <figure key={index} className="p-4 tooltip">
             <div className="tooltiptext">{skill.name}</div>
-            <Image className="w-24 h-24 mx-auto mb-3" src={skill.src} alt={skill.name}
+            <Image className="w-24 h-24 mx-auto mb-3" src={`/personal-site${skill.src}`} alt={skill.name}
                  width="512" height="512"/>
           </figure>
         ))}
