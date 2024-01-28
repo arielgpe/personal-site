@@ -44,7 +44,7 @@ const Container = forwardRef<Ref, DivProps>((props, ref) => {
         break;
     }
     setClassNameState(merged);
-  }, [pathname]);
+  }, [pathname, className]);
 
   return (
     <NavigationContext.Provider value={{menuIndex, setMenuIndex}}>

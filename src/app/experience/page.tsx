@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const Experience = () => {
 
   const experiences = [
@@ -45,7 +47,7 @@ const Experience = () => {
       <div className="grid grid-cols-1 gap-1">
         {experiences.map((experience, index) => (
           <figure key={index} className="rounded-xl p-4">
-            <img className="w-24 h-24 rounded-full mx-auto mb-3" src={experience.src} alt={experience.name}
+            <Image className="w-24 h-24 rounded-full mx-auto mb-3" src={experience.src} alt={experience.name}
                  width="200" height="200"/>
             <figcaption className="font-medium text-center">
               <div className="text-sky-500 dark:text-sky-400">
@@ -67,16 +69,6 @@ const Experience = () => {
           </figure>
         ))}
       </div>
-
-
-      {/*  </div>*/}
-      {/*  <div className="basis-1/3">*/}
-      {/*    newtech*/}
-      {/*  </div>*/}
-      {/*  <div className="basis-1/3">*/}
-      {/*    media revolution*/}
-      {/*  </div>*/}
-      {/*</div>*/}
     </div>
   );
 };
