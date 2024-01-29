@@ -25,6 +25,26 @@ export default function RootLayout({
     <body className={inter.className}>
     <div
       className={`relative flex min-h-screen flex-col justify-center overflow-hidden lg:py-12`}>
+
+      <div className={'w-full lg:w-8/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-1'}>
+        <div className={'col-start-3 flex justify-end'}>
+          <Link className={'cursor-pointer shrink'} href={'mailto:ariel.guzman01@gmail.com?subject=job offer'}>
+            <figure className="p-1">
+              <Image className="w-8 h-8" src={'/personal-site/gmail.png'} alt={'Mail'} width={'512'} height={'512'}/>
+            </figure>
+          </Link>
+          <Link className={'cursor-pointer shrink mx-5'} target={'_blank'} href={'https://github.com/arielgpe'}>
+            <figure className="p-1">
+              <Image className="w-8 h-8" src={'/personal-site/github.png'} alt={'github.com/arielgpe'} width={'512'} height={'512'}/>
+            </figure>
+          </Link>
+          <Link className={'cursor-pointer shrink'} target={'_blank'} href={'https://linkedin.com/in/arielgpe'}>
+            <figure className="p-1">
+              <Image className="w-8 h-8" src={'/personal-site/linkedin.png'} alt={'linkedin'} width={'512'} height={'512'}/>
+            </figure>
+          </Link>
+        </div>
+      </div>
       <Container
         className="relative w-full h-full px-6 lg:h-[700px] lg:pt-10 lg:pb-8 lg:shadow-md lg:w-8/12 lg:mx-auto lg:rounded-lg lg:px-10">
         <div className="mx-auto">
@@ -45,25 +65,6 @@ export default function RootLayout({
           </div>
         </div>
       </Container>
-      <div className={'w-full lg:w-8/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-1'}>
-        <div className={'col-start-3 flex justify-end'}>
-          <Link className={'cursor-pointer shrink'} href={'mailto:ariel.guzman01@gmail.com?subject=job offer'}>
-            <figure className="p-1">
-              <Image className="w-8 h-8" src={'/personal-site/gmail.png'} alt={'Mail'} width={'512'} height={'512'}/>
-            </figure>
-          </Link>
-          <Link className={'cursor-pointer shrink mx-5'} target={'_blank'} href={'https://github.com/arielgpe'}>
-            <figure className="p-1">
-              <Image className="w-8 h-8" src={'/personal-site/github.png'} alt={'github.com/arielgpe'} width={'512'} height={'512'}/>
-            </figure>
-          </Link>
-          <Link className={'cursor-pointer shrink'} target={'_blank'} href={'https://linkedin.com/in/arielgpe'}>
-            <figure className="p-1">
-              <Image className="w-8 h-8" src={'/personal-site/linkedin.png'} alt={'linkedin'} width={'512'} height={'512'}/>
-            </figure>
-          </Link>
-        </div>
-      </div>
     </div>
     </body>
     </html>

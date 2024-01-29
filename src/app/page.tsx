@@ -5,7 +5,7 @@ export default function Home() {
     <main className={'animate-fade-in h-[550px] sm:overflow-y-scroll sm:h-full'}>
       <h1 className={'text-2xl mb-4 sm:text-8xl'}>Welcome.</h1>
       <p>
-        My name is Ariel Guzm&#225;n, I&apos;m a software developer from Dominican Republic with 10+ years of experience with
+        My name is Ariel Guzm&#225;n, I&apos;m a software developer from Dominican Republic with 10+ years of experience developing
         commercial level applications.
         I&apos;m a Front-End-heavy Full-stack developer with vast experience in frameworks like React, Angular and Ionic.
         Experienced with Node using frameworks like Express and NestJS.
