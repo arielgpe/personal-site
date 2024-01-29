@@ -24,8 +24,7 @@ export default function RootLayout({
     <html lang="en">
     <body className={inter.className}>
     <div
-      className={`relative flex min-h-screen flex-col justify-center overflow-hidden lg:py-12`}>
-
+      className={`relative flex min-h-screen flex-col justify-center overflow-hidden`}>
       <div className={'w-full lg:w-8/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-1'}>
         <div className={'col-start-3 flex justify-end'}>
           <Link className={'cursor-pointer shrink'} href={'mailto:ariel.guzman01@gmail.com?subject=job offer'}>
