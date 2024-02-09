@@ -66,10 +66,9 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        env:
-          GA_MEASUREMENT_ID: ${{secrets.GA_MEASUREMENT_ID}}
-        run: 
-          echo "LAUNCHDARKLY_SDK_CLIENT_SIDE_ID=${{ secrets.GA_MEASUREMENT_ID }}"
+        run: |
+          touch .env.local
+          echo GA_MEASUREMENT_ID=${{ secrets.GA_MEASUREMENT_ID }} >> .env.local
           ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: LS directory
         run: ls
