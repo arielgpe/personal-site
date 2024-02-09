@@ -6,6 +6,7 @@ import Navigation from '@/components/organism/Navigation';
 import Container from '@/components/molecules/Container/Container';
 import Link from 'next/link';
 import Image from 'next/image';
+import ReactGA from 'react-ga4';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -14,11 +15,15 @@ export const metadata: Metadata = {
   description: 'Personal Site',
 };
 
+const GA_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID || '';
+
 export default function RootLayout({
                                      children,
                                    }: Readonly<{
   children: ReactNode;
 }>) {
+
+  ReactGA.initialize(GA_MEASUREMENT_ID);
 
   return (
     <html lang="en">
