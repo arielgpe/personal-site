@@ -12,7 +12,7 @@ const currentYear = new Date().getFullYear();
 
 export const Footer = ({noMarginTop = false}: Props) => {
   return (
-    <footer className={`${noMarginTop ? '' : 'mt-auto'}`}>
+    <footer className={`flex-initial w-full ${noMarginTop ? '' : 'mt-auto'}`}>
       <Hr noPadding/>
       <div className="footer-wrapper">
         <Socials centered/>

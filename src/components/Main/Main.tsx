@@ -17,7 +17,7 @@ interface ArrayTitleProp {
 type Props = StringTitleProp | ArrayTitleProp;
 export const Main = ({children, ...props}: Props) => {
   return (
-    <main id="main-content">
+    <main id="main-content" className={'mx-2'}>
       {
         'titleTransition' in props ? (
           <h1>

@@ -2,15 +2,15 @@
 
 import Datetime from '../Datetime/Datetime';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
+import { Post } from '@/interfaces/Posts';
 
 export interface Props {
   href?: string;
-  frontmatter: any;
+  frontmatter: Post;
   secHeading?: boolean;
 }
 
 export const Card = ({href, frontmatter, secHeading = true}: Props) => {
-  const {title, pubDatetime, modDatetime, description} = frontmatter;
 
   const headerProps = {
     // style: {viewTransitionName: slugifyStr(title)},
@@ -24,13 +24,13 @@ export const Card = ({href, frontmatter, secHeading = true}: Props) => {
         className="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
       >
         {secHeading ? (
-          <h2 {...headerProps}>{title}</h2>
+          <h2 {...headerProps}>{frontmatter.title}</h2>
         ) : (
-          <h3 {...headerProps}>{title}</h3>
+          <h3 {...headerProps}>{frontmatter.title}</h3>
         )}
       </LinkButton>
-      <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime}/>
-      <p>{description}</p>
+      <Datetime pubDatetime={frontmatter.createdAt} modDatetime={frontmatter.updatedAt}/>
+      <p>{frontmatter.description}</p>
     </li>
   );
 };

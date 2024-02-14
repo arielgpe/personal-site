@@ -41,24 +41,6 @@ const SOCIALS: SocialObjects = [
     linkTitle: `Send an email to ${SITE.title}`,
     active: true,
   },
-  {
-    name: "WhatsApp",
-    href: "https://wa.me/18097693831?text=I'm interested",
-    linkTitle: `${SITE.title} on WhatsApp`,
-    active: true,
-  },
-  {
-    name: "Steam",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on Steam`,
-    active: false,
-  },
-  {
-    name: "Telegram",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on Telegram`,
-    active: false,
-  },
 ];
 
 export const Socials = ({centered}: Props) => {

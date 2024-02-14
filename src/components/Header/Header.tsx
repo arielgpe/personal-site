@@ -6,8 +6,6 @@ import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { clsx } from 'clsx';
 import { Site } from '@/interfaces/Site';
 import { useTheme } from 'next-themes';
-import Link from 'next/link';
-import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs';
 
 interface Props {
   activeNav?: string;
@@ -28,7 +26,7 @@ export const Header = ({activeNav}: Props) => {
   const {theme, setTheme} = useTheme();
 
   return (
-    <header>
+    <header className={'flex-initial'}>
       <LinkButton id="skip-to-content" href="#main-content">Skip to content</LinkButton>
       <div className="nav-container">
         <div className="top-nav-wrap">

@@ -15,9 +15,8 @@ export default function PageLayout({
   children: ReactNode;
 }>) {
   return (
-    <main>
+    <main className={'flex flex-col h-screen'}>
       <Header activeNav={'posts'}/>
-      <Breadcrumbs/>
       <section className={'animate-fade-in'}>{children}</section>
       <Footer/>
     </main>

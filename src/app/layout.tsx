@@ -7,7 +7,8 @@ import { NextThemesProvider } from '@/components/NextThemesProvider';
 
 const IBMPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
-  subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700']});
+  subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700']
+});
 
 export const metadata: Metadata = {
   title: 'Ariel Guzman',
@@ -28,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
     <body className={IBMPlexMono.variable}>
     <NextThemesProvider>
-      <main className={'theme-light dark:theme-dark'}>
+      <main className={'theme-light dark:theme-dark flex flex-col h-screen'}>
         {children}
       </main>
     </NextThemesProvider>

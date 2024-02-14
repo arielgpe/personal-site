@@ -3,6 +3,7 @@ import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs';
+import { FrozenRouter } from '@/components/FrozenRouter';
 
 export const metadata: Metadata = {
   title: 'Search > Ariel Guzman ',
@@ -15,10 +16,12 @@ export default function PageLayout({
   children: ReactNode;
 }>) {
   return (
-    <main>
+    <main className={'flex flex-col h-screen'}>
       <Header activeNav={'search'}/>
-      <Breadcrumbs/>
-      <section className={'animate-fade-in'}>{children}</section>
+      <section className={'animate-fade-in'}>
+        <Breadcrumbs/>
+        {children}
+      </section>
       <Footer/>
     </main>
   );

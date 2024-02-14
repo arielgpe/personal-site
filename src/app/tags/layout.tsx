@@ -15,10 +15,12 @@ export default function PageLayout({
   children: ReactNode;
 }>) {
   return (
-    <main>
+    <main className={'flex flex-col h-screen'}>
       <Header activeNav={'tags'}/>
-      <Breadcrumbs/>
-      <section className={'animate-fade-in'}>{children}</section>
+      <section className={'animate-fade-in flex-auto'}>
+        <Breadcrumbs/>
+        {children}
+      </section>
       <Footer/>
     </main>
   );

@@ -13,11 +13,20 @@ export const Breadcrumbs = () => {
   useEffect(() => {
     const pathList = pathname.replace(/\/+$/, '').split('/').slice(1);
 
-    pathList[0] === "posts" &&
+    pathList[0] === 'posts' &&
     pathList.splice(0, 2, `Posts (page ${pathList[1] || 1})`);
 
+    pathList[0] === 'tags' &&
+    !isNaN(Number(pathList[2])) &&
+    pathList.splice(
+      1,
+      3,
+      `${pathList[1]} ${
+        Number(pathList[2]) === 1 ? '' : '(page ' + pathList[2] + ')'
+      }`
+    );
+
     setBreadcrumbList(pathList);
-    console.log('pathname', pathList);
   }, [pathname]);
 
   return (
@@ -32,7 +41,7 @@ export const Breadcrumbs = () => {
             index + 1 === breadcrumbList.length ? (
               <li key={index + 1}>
             <span
-              className={clsx( index > 0 ? 'lowercase' : 'capitalize')}
+              className={clsx(index > 0 ? 'lowercase' : 'capitalize')}
               aria-current="page"
             >
               {/* make the last part lowercase in Home > Tags > some-tag */}

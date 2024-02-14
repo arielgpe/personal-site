@@ -3,24 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
     "clsx": "^2.1.0",
+    "framer-motion": "^11.0.5",
+    "github-slugger": "^2.0.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
     "react-ga4": "^2.1.0",
-    "tinacms": "^1.5.28"
+    "react-markdown": "^9.0.1",
+    "remark-gfm": "^4.0.0",
+    "strapi-sdk-js": "^2.3.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "@tinacms/cli": "^1.5.39",
     "@types/node": "^20.11.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
