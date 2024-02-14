@@ -144,6 +144,12 @@
     }
   }
 
+  .about-md {
+    ul {
+      @apply list-disc ml-5
+    }
+  }
+
 }
 
 @layer components {

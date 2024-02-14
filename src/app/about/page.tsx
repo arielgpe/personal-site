@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import Markdown from 'react-markdown';
 import { LinkRenderer } from '@/components/LinkRenderer';
 import { FrozenRouter } from '@/components/FrozenRouter';
+import { Hr } from '@/components/Hr/Hr';
 
 const About = () => {
   const strapi = getStrapiClient();
@@ -28,11 +29,21 @@ const About = () => {
   return (
     <FrozenRouter>
       <Main pageTitle={about?.attributes.title ?? 'About'}>
-        {about ? <Markdown skipHtml={false} components={{a: LinkRenderer}}
-                  remarkPlugins={[remarkGfm]}>{about.attributes.body}</Markdown> : null}
+        <div className={'about-md'}>
+          {about ? <Markdown skipHtml={false} components={{a: LinkRenderer, hr: MdHr}}
+                             remarkPlugins={[remarkGfm]}>{about.attributes.body}</Markdown> : null}
+        </div>
       </Main>
     </FrozenRouter>
   );
 };
 
 export default About;
+
+const MdHr = (props: any) => {
+  return (
+    <div {...props} className={`my-5`}>
+      <Hr noPadding={true}/>
+    </div>
+  );
+};
