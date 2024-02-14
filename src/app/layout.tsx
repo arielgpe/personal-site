@@ -13,6 +13,11 @@ const IBMPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: 'Ariel Guzman',
   description: 'Personal Site',
+  alternates: {
+    types: {
+      'application/rss+xml': 'http://localhost:3000/api/blog/feed.xml',
+    }
+  }
 };
 
 export default function RootLayout({

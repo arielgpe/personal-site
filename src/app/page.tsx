@@ -66,7 +66,6 @@ const Home = () => {
     <>
       <Header/>
       <FrozenRouter>
-
         <main id="main-content">
           {description ?
             (
@@ -74,7 +73,7 @@ const Home = () => {
                 <h1>Ariel Guzmán</h1>
                 <a
                   target="_blank"
-                  href="/rss.xml"
+                  href="http://localhost:3000/api/blog/feed.xml"
                   className="rss-link"
                   aria-label="rss feed"
                   title="RSS Feed"
