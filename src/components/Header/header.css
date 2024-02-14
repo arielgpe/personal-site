@@ -1,0 +1,74 @@
+
+header {
+  @apply font-mono;
+}
+header #skip-to-content {
+  @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
+}
+header .nav-container {
+  @apply mx-auto flex max-w-6xl flex-col items-center justify-between sm:flex-row;
+}
+header .top-nav-wrap {
+  @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
+}
+header .logo {
+  @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
+}
+header .hamburger-menu {
+  @apply self-end p-2 sm:hidden;
+}
+header .hamburger-menu svg {
+  @apply h-6 w-6 scale-125 fill-skin-base;
+}
+
+header nav {
+  @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
+}
+header nav ul {
+  @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
+}
+header nav ul li {
+  @apply col-span-2 flex items-center justify-center;
+}
+header nav ul li a {
+  @apply w-full px-4 py-3 text-center font-medium hover:text-skin-accent sm:my-0 sm:px-2 sm:py-1;
+}
+header nav ul li:nth-last-child(2) a {
+  @apply w-auto;
+}
+header nav ul li:nth-last-child(1),
+header nav ul li:nth-last-child(2) {
+  @apply col-span-1;
+}
+header nav a.active {
+  @apply underline decoration-wavy decoration-2 underline-offset-4;
+}
+header nav a.active svg {
+  @apply fill-skin-accent;
+}
+
+header nav button {
+  @apply p-1;
+}
+header nav button svg {
+  @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
+}
+header #theme-btn {
+  @apply p-3 sm:p-1;
+}
+header #theme-btn svg {
+  @apply scale-125 hover:rotate-12 sm:scale-100;
+}
+
+header .menu-icon line {
+  @apply transition-opacity duration-75 ease-in-out;
+}
+header .menu-icon .close {
+  opacity: 0;
+}
+header .menu-icon.is-active .line {
+  @apply opacity-0;
+}
+header .menu-icon.is-active .close {
+  @apply opacity-100;
+}

@@ -2,76 +2,156 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 255, 255, 255;
-  --angle: 0deg;
-  --opacity: 1;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background-color: theme(colors.grey);
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  :root,
+  html[data-theme="light"] {
+    --color-fill: 253, 243, 237;
+    --color-text-base: 40, 39, 40;
+    --color-accent: 183, 6, 72;
+    --color-card: 230, 230, 230;
+    --color-card-muted: 205, 205, 205;
+    --color-border: 183, 6, 72;
   }
 
-  .rainbow {
-    --border-size: 0.3rem;
-    border: var(--border-size) dotted transparent;
+  html[data-theme="dark"] {
+    --color-fill: 51, 51, 53;
+    --color-text-base: 234, 237, 243;
+    --color-accent: 249, 222, 201;
+    --color-card: 52, 63, 96;
+    --color-card-muted: 138, 51, 2;
+    --color-border: 249, 222, 201;
+  }
 
-    background-image: linear-gradient(
-        to right,
-        theme(colors.grey),
-        theme(colors.grey)
-    ),
-    conic-gradient(
-        from var(--angle),
-        transparent 0deg 90deg,
-        theme(colors.pink) 90deg 180deg,
-        transparent 180deg 270deg,
-        theme(colors.green) 270deg 360deg
-    );
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
+  #sun-svg,
+  html[data-theme="dark"] #moon-svg {
+    display: none;
+  }
+
+  #moon-svg,
+  html[data-theme="dark"] #sun-svg {
+    display: block;
+  }
+
+  body {
+    @apply flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base
+    selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
+  }
+
+  section {
+    @apply mx-auto max-w-6xl px-4 w-full;
+  }
+
+  a {
+    @apply outline-2 outline-offset-1 outline-skin-fill
+    focus-visible:no-underline focus-visible:outline-dashed;
+  }
+
+  svg {
+    @apply inline-block h-6 w-6 fill-skin-base group-hover:fill-skin-accent;
+  }
+
+  svg.icon-tabler {
+    @apply inline-block h-6 w-6 scale-125 fill-transparent
+    stroke-current stroke-2 opacity-90 group-hover:fill-transparent
+    sm:scale-110;
+  }
+
+  .prose {
+    @apply prose-headings:!mb-3 prose-headings:!text-skin-base
+    prose-h3:italic prose-p:!text-skin-base
+    prose-a:!text-skin-base prose-a:!decoration-dashed prose-a:underline-offset-8
+    hover:prose-a:text-skin-accent prose-blockquote:!border-l-skin-accent
+    prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
+    prose-figcaption:!text-skin-base prose-figcaption:opacity-70
+    prose-strong:!text-skin-base
+
+
+    prose-code:rounded prose-code:bg-skin-card
+    prose-code:bg-opacity-75 prose-code:p-1
+    prose-code:before:!content-none prose-code:after:!content-none
+    prose-ol:!text-skin-base
+    prose-ul:overflow-x-clip prose-ul:!text-skin-base prose-li:marker:!text-skin-accent
+    prose-table:text-skin-base prose-th:border
+    prose-th:border-skin-line prose-td:border
+    prose-td:border-skin-line prose-img:!my-2
+    prose-img:mx-auto prose-img:border-2
+    prose-img:border-skin-line prose-hr:!border-skin-line;
+  }
+
+  .prose a {
+    @apply break-words hover:!text-skin-accent;
+  }
+
+  .prose thead th:first-child,
+  tbody td:first-child,
+  tfoot td:first-child {
+    padding-left: 0.5714286em;
+  }
+
+  .prose h2#table-of-contents {
+    @apply mb-2;
+  }
+
+  .prose details {
+    @apply inline-block cursor-pointer select-none text-skin-base;
+  }
+
+  .prose summary {
+    @apply focus-outline;
+  }
+
+  .prose h2#table-of-contents + p {
+    @apply hidden;
+  }
+
+  /* ===== scrollbar ===== */
+  html {
+    overflow-y: scroll;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-skin-fill;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-skin-card;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-skin-card-muted;
+  }
+
+  code,
+  blockquote {
+    word-wrap: break-word;
+  }
+
+  pre > code {
+    white-space: pre;
+  }
+
+  .markdown-container {
+    a {
+      @apply underline decoration-dashed underline-offset-8 ;
+    }
+  }
+
+}
+
+@layer components {
+  .display-none {
+    @apply hidden;
+  }
+
+  .focus-outline {
+    @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
   }
 }
-
-
-
-.tooltip {
-  @apply inline-block relative;
-}
-
-.tooltip .tooltiptext {
-  @apply invisible bg-white text-center;
-  color: theme(colors.grey);
-  border-radius: 6px;
-  z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-  @apply visible;
-}
-
-/* Animate when Houdini is available */
-@supports (background: paint(houdini)) {
-  @property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-}
-
-
-/*background: linear-gradient(135deg,var(--grad-1)0%,var(--grad-2)50%,var(--grad-1)100%);*/
-
-
