@@ -4,6 +4,7 @@ import { Main } from '@/components/Main/Main';
 import { useEffect, useState } from 'react';
 import { getStrapiClient } from '@/utils/getStrapiClient';
 import remarkGfm from 'remark-gfm';
+import remarkEmoji from 'remark-emoji';
 import Markdown from 'react-markdown';
 import { LinkRenderer } from '@/components/LinkRenderer';
 import { FrozenRouter } from '@/components/FrozenRouter';
@@ -31,7 +32,7 @@ const About = () => {
       <Main pageTitle={about?.attributes.title ?? 'About'}>
         <div className={'about-md'}>
           {about ? <Markdown skipHtml={false} components={{a: LinkRenderer, hr: MdHr}}
-                             remarkPlugins={[remarkGfm]}>{about.attributes.body}</Markdown> : null}
+                             remarkPlugins={[remarkGfm, remarkEmoji]}>{about.attributes.body}</Markdown> : null}
         </div>
       </Main>
     </FrozenRouter>

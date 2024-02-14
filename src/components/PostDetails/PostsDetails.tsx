@@ -9,6 +9,7 @@ import { LinkRenderer } from '@/components/LinkRenderer';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 import { useRouter } from 'next/navigation';
+import remarkEmoji from 'remark-emoji';
 
 export const PostsDetails = ({params}: { params: { slug: string } }) => {
   const strapi = getStrapiClient();
@@ -71,7 +72,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
           <article id="article" role="article" className="prose mx-auto mt-8 max-w-6xl">
             <Markdown skipHtml={false} components={{a: LinkRenderer}}
                       // @ts-expect-error array is not assignable to string, but react-markdown can handle it
-                      remarkPlugins={[remarkGfm]}>{currentPost.attributes.body}</Markdown>
+                      remarkPlugins={[remarkGfm, remarkEmoji]}>{currentPost.attributes.body}</Markdown>
           </article>
 
           <ul className="my-8">

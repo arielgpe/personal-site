@@ -15,6 +15,7 @@ import Markdown from 'react-markdown';
 import { LinkRenderer } from '@/components/LinkRenderer';
 import remarkGfm from 'remark-gfm';
 import { FrozenRouter } from '@/components/FrozenRouter';
+import remarkEmoji from 'remark-emoji';
 
 const Home = () => {
   const strapi = getStrapiClient();
@@ -92,7 +93,7 @@ const Home = () => {
                 </a>
 
                 <Markdown skipHtml={false} className={'markdown-container'} components={{a: LinkRenderer}}
-                          remarkPlugins={[remarkGfm]}>{description.attributes.body}</Markdown>
+                          remarkPlugins={[remarkGfm, remarkEmoji]}>{description.attributes.body}</Markdown>
 
                 <div className="social-wrapper">
                   <div className="social-links">Social Links:</div>
