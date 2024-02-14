@@ -40,8 +40,6 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
       getData();
     }
 
-    console.log('history,', history);
-
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

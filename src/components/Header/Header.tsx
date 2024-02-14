@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { clsx } from 'clsx';
 import { Site } from '@/interfaces/Site';
 import { useTheme } from 'next-themes';
+import { useState } from 'react';
 
 interface Props {
   activeNav?: string;
@@ -24,6 +25,7 @@ export const SITE: Site = {
 
 export const Header = ({activeNav}: Props) => {
   const {theme, setTheme} = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className={'flex-initial'}>
@@ -35,6 +37,7 @@ export const Header = ({activeNav}: Props) => {
           </LinkButton>
           <nav id="nav-menu">
             <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="hamburger-menu focus-outline"
               aria-label="Open Menu"
               aria-expanded="false"
@@ -59,7 +62,7 @@ export const Header = ({activeNav}: Props) => {
                 <line x1="6" y1="6" x2="18" y2="18" className="close"></line>
               </svg>
             </button>
-            <ul id="menu-items" className="display-none sm:flex">
+            <ul id="menu-items" className={clsx(`sm:flex`, isMenuOpen ? '' : 'display-none')}>
               <li>
                 <LinkButton href="/posts/" className={activeNav === 'posts' ? 'active' : ''}>
                   Posts
