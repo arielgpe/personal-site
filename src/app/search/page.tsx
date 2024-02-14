@@ -58,8 +58,13 @@ const Search = () => {
   }, [debouncedVendorNameSearchTerm]);
 
   const handleChange = async (e: React.FormEvent<HTMLInputElement>) => {
-    setInputVal(e.currentTarget.value);
-    router.push(`?q=${e.currentTarget.value}`);
+    const value = e.currentTarget.value;
+    setInputVal(value);
+    if (value.length > 0) {
+      router.push(`?q=${value}`);
+    } else {
+      router.replace('/search');
+    }
   };
 
   return (
