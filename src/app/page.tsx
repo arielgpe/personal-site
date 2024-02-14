@@ -74,7 +74,7 @@ const Home = () => {
                 <h1>Ariel Guzmán</h1>
                 <a
                   target="_blank"
-                  href="http://localhost:3000/api/blog/feed.xml"
+                  href="https://arielgpe.dev/api/blog/feed.xml"
                   className="rss-link"
                   aria-label="rss feed"
                   title="RSS Feed"

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Personal Site',
   alternates: {
     types: {
-      'application/rss+xml': 'http://localhost:3000/api/blog/feed.xml',
+      'application/rss+xml': 'https://arielgpe.dev/api/blog/feed.xml',
     }
   }
 };
