@@ -17,8 +17,6 @@ export const GET = async () => {
       language: 'en',
     });
 
-    console.log(`${STRAPI_URL}/api/posts`);
-
     const response = await fetch(`${STRAPI_URL}/api/posts`, {
       method: 'GET',
       headers: {
