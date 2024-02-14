@@ -53,7 +53,7 @@ const Search = () => {
       setPosts([]);
     }
 
-  }, [debouncedVendorNameSearchTerm]);
+  }, [debouncedVendorNameSearchTerm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = async (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
@@ -98,7 +98,7 @@ const Search = () => {
             {posts?.length && posts?.length === 1
               ? ' result'
               : ' results'}{' '}
-            for '{inputVal}'
+            for &apos;{inputVal}&apos;
           </div>
         )}
 

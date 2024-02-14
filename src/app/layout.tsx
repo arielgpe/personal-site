@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import { ReactNode } from 'react';
-import ReactGA from 'react-ga4';
 import { NextThemesProvider } from '@/components/NextThemesProvider';
+import { Analytics } from '@vercel/analytics/react';
 
 const IBMPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
@@ -15,65 +15,21 @@ export const metadata: Metadata = {
   description: 'Personal Site',
 };
 
-const GA_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID || '';
-
 export default function RootLayout({
                                      children,
                                    }: Readonly<{
   children: ReactNode;
 }>) {
-
-  ReactGA.initialize(GA_MEASUREMENT_ID);
-
   return (
     <html lang="en">
-    <body className={IBMPlexMono.variable}>
-    <NextThemesProvider>
-      <main className={'theme-light dark:theme-dark flex flex-col h-screen'}>
-        {children}
-      </main>
-    </NextThemesProvider>
-    {/*<div*/}
-    {/*  className={`relative flex min-h-screen flex-col justify-center overflow-hidden`}>*/}
-    {/*  <div className={'w-full lg:w-8/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-1'}>*/}
-    {/*    <div className={'col-start-3 flex justify-end'}>*/}
-    {/*      <Link className={'cursor-pointer shrink'} href={'mailto:ariel.guzman01@gmail.com?subject=job offer'}>*/}
-    {/*        <figure className="p-1">*/}
-    {/*          <Image className="w-8 h-8" src={'/gmail.png'} alt={'Mail'} width={'512'} height={'512'}/>*/}
-    {/*        </figure>*/}
-    {/*      </Link>*/}
-    {/*      <Link className={'cursor-pointer shrink mx-5'} target={'_blank'} href={'https://github.com/arielgpe'}>*/}
-    {/*        <figure className="p-1">*/}
-    {/*          <Image className="w-8 h-8" src={'/github.png'} alt={'github.com/arielgpe'} width={'512'} height={'512'}/>*/}
-    {/*        </figure>*/}
-    {/*      </Link>*/}
-    {/*      <Link className={'cursor-pointer shrink'} target={'_blank'} href={'https://linkedin.com/in/arielgpe'}>*/}
-    {/*        <figure className="p-1">*/}
-    {/*          <Image className="w-8 h-8" src={'/linkedin.png'} alt={'linkedin'} width={'512'} height={'512'}/>*/}
-    {/*        </figure>*/}
-    {/*      </Link>*/}
-    {/*    </div>*/}
-    {/*  </div>*/}
-    {/*<Container*/}
-    {/*  className="relative w-full h-full px-6 lg:h-[700px] lg:pt-10 lg:pb-8 lg:shadow-md lg:w-8/12 lg:mx-auto lg:rounded-lg lg:px-10">*/}
-    {/*  <div className="mx-auto">*/}
-    {/*    <div className="divide-y divide-gray-300/50">*/}
-    {/*      <div className="space-y-6 py-8 text-base leading-7 text-white-600">*/}
-    {/*        <div className="block lg:hidden">*/}
-    {/*        </div>*/}
-    {/*        <div className="flex flex-row items-stretch">*/}
-    {/*          <div className="basis-full lg:basis-3/4">*/}
-    {/*            {children}*/}
-    {/*          </div>*/}
-    {/*          <div className="hidden lg:block lg:basis-1/4 m-6 w-1/5 absolute bottom-0 right-0">*/}
-    {/*          </div>*/}
-    {/*        </div>*/}
-    {/*      </div>*/}
-    {/*    </div>*/}
-    {/*  </div>*/}
-    {/*</Container>*/}
-    {/*</div>*/}
-    </body>
+      <body className={IBMPlexMono.variable}>
+        <NextThemesProvider>
+          <main className={'theme-light dark:theme-dark flex flex-col h-screen'}>
+            {children}
+            <Analytics />
+          </main>
+        </NextThemesProvider>
+      </body>
     </html>
   );
 }

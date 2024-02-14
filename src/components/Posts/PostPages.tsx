@@ -44,7 +44,7 @@ export const PostPages = ({params}: { params: { slug: string } }) => {
 
     getData();
 
-  }, [params]);
+  }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -62,5 +62,5 @@ export const PostPages = ({params}: { params: { slug: string } }) => {
                   prevUrl={`/posts${pagination.currentPage - 1 !== 1 ? '/' + (pagination.currentPage - 1) : ''}/`}
                   nextUrl={`/posts/${pagination.currentPage + 1}`}/>
     </>
-  )
-}
+  );
+};

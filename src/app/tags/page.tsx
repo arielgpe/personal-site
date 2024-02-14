@@ -25,18 +25,18 @@ const Tags = () => {
 
     getData();
 
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (
     <FrozenRouter>
       <Main pageTitle="Tags" pageDesc="list of tags used so far">
         <ul>
-          {tags.map(tag => <Tag tag={tag.attributes.name} size="lg" />)}
+          {tags.map(tag => <Tag key={tag.id} tag={tag.attributes.name} size="lg"/>)}
         </ul>
       </Main>
     </FrozenRouter>
-  )
-}
+  );
+};
 
 export default Tags;

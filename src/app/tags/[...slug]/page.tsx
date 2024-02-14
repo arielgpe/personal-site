@@ -12,8 +12,6 @@ import { FrozenRouter } from '@/components/FrozenRouter';
 
 const Tags = ({params}: { params: { slug: string[] } }) => {
   const strapi = getStrapiClient();
-  const [posts, setPosts] = useState<ContentType<Post>[]>([]);
-
 
   const [pagination, setPagination] = useState<IPagination<ContentType<Post>>>({
     totalPages: 1,
@@ -52,7 +50,7 @@ const Tags = ({params}: { params: { slug: string[] } }) => {
     if ('slug' in params) {
       getData();
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (
@@ -71,7 +69,7 @@ const Tags = ({params}: { params: { slug: string[] } }) => {
                   prevUrl={`/tags/${params.slug[0]}/${pagination.currentPage - 1 !== 1 ? '/' + (pagination.currentPage - 1) : ''}/`}
                   nextUrl={`/tags/${params.slug[0]}/${pagination.currentPage + 1}`}/>
     </FrozenRouter>
-  )
-}
+  );
+};
 
 export default Tags;

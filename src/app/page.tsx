@@ -60,8 +60,7 @@ const Home = () => {
     };
 
     getData();
-  }, []);
-
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -129,7 +128,7 @@ const Home = () => {
               <section id="recent-posts">
                 <h2>Recent Posts</h2>
                 <ul>
-                  {recentPosts.map((post, index) =>
+                  {recentPosts.map((post) =>
                     <Card
                       key={post.id}
                       href={`/posts/${post.attributes.slug}/`}

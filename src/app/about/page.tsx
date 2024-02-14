@@ -23,7 +23,7 @@ const About = () => {
 
     getData();
 
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <FrozenRouter>

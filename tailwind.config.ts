@@ -22,11 +22,6 @@ module.exports = {
     },
 
     extend: {
-      colors: {
-        green: '#024900',
-        pink: '#900048',
-        grey: '#333335',
-      },
       textColor: {
         skin: {
           base: withOpacity('--color-text-base'),

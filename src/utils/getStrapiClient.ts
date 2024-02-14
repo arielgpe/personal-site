@@ -8,4 +8,4 @@ export const getStrapiClient = (options?: StrapiOptions) => {
   strapi.setToken(STRAPI_TOKEN);
 
   return strapi;
-}
+};

@@ -8,9 +8,11 @@ import { Tag } from '@/components/Tag/Tag';
 import { LinkRenderer } from '@/components/LinkRenderer';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
+import { useRouter } from 'next/navigation';
 
 export const PostsDetails = ({params}: { params: { slug: string } }) => {
   const strapi = getStrapiClient();
+  const router = useRouter();
   const [currentPost, setCurrentPost] = useState<ContentType<Post>>();
 
   useEffect(() => {
@@ -37,7 +39,9 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
       getData();
     }
 
-  }, []);
+    console.log('history,', history);
+
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     currentPost ?
@@ -45,7 +49,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
         <div className="mx-auto flex w-full max-w-6xl justify-start px-2">
           <button
             className="focus-outline mb-2 mt-8 flex hover:opacity-75"
-            onClick={() => (history.length === 1) ? window.location = '/' : history.back()}
+            onClick={() => (history.length === 1) ? router.replace('/') : router.back()}
           >
             <svg xmlns="http://www.w3.org/2000/svg"
             >
@@ -66,6 +70,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
           />
           <article id="article" role="article" className="prose mx-auto mt-8 max-w-6xl">
             <Markdown skipHtml={false} components={{a: LinkRenderer}}
+                      // @ts-expect-error array is not assignable to string, but react-markdown can handle it
                       remarkPlugins={[remarkGfm]}>{currentPost.attributes.body}</Markdown>
           </article>
 
