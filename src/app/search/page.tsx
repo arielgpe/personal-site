@@ -8,14 +8,12 @@ import { Post } from '@/interfaces/Posts';
 import { getStrapiClient } from '@/utils/getStrapiClient';
 import { useDebounce } from '@/utils/useDebounce';
 import { FrozenRouter } from '@/components/FrozenRouter';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const Search = () => {
   const strapi = getStrapiClient();
   const [posts, setPosts] = useState<ContentType<Post>[]>([]);
-  const searchParams = useSearchParams();
   const router = useRouter();
-
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputVal, setInputVal] = useState('');

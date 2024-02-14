@@ -93,7 +93,7 @@ const Home = () => {
                   <span className="sr-only">RSS Feed</span>
                 </a>
 
-                <Markdown skipHtml={false} components={{a: LinkRenderer}}
+                <Markdown skipHtml={false} className={'markdown-container'} components={{a: LinkRenderer}}
                           remarkPlugins={[remarkGfm]}>{description.attributes.body}</Markdown>
 
                 <div className="social-wrapper">
