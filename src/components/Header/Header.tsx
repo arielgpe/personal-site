@@ -32,7 +32,7 @@ export const Header = ({activeNav}: Props) => {
       <LinkButton id="skip-to-content" href="#main-content">Skip to content</LinkButton>
       <div className="nav-container">
         <div className="top-nav-wrap">
-          <LinkButton href="/" className="logo whitespace-nowrap text-skin-accent">
+          <LinkButton href="/" className="logo mt-2 sm:mt-0 whitespace-nowrap text-skin-accent">
             ArielGpe
           </LinkButton>
           <nav id="nav-menu">

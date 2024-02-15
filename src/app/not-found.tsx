@@ -1,0 +1,38 @@
+import { Header } from '@/components/Header/Header';
+import { Footer } from '@/components/Footer/Footer';
+import { LinkButton } from '@/components/LinkButton/LinkButton';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: {
+    absolute: '404 - Not Found'
+  },
+  description: '404 - not found',
+};
+
+const notFound = () => {
+  return (
+    <main className={'flex flex-col h-screen'}>
+      <Header/>
+      <section className={'animate-fade-in mt-auto'}>
+        <main id="main-content">
+          <div className="not-found-wrapper">
+            <h1 aria-label="404 Not Found">404</h1>
+            <span aria-hidden="true">¯\_(ツ)_/¯</span>
+            <p>Page Not Found</p>
+            <LinkButton
+              href="/"
+              className="my-6 text-lg underline decoration-dashed underline-offset-8"
+            >
+              Go back home
+            </LinkButton>
+          </div>
+        </main>
+      </section>
+      <Footer/>
+    </main>
+  );
+};
+
+export default notFound;
