@@ -36,6 +36,7 @@ export const PostPages = ({params}: { params: { slug: string } }) => {
           pageSize: 3
         }
       });
+      console.log("page?");
       const pagntn = posts.meta.pagination as any;
       setPagination({
         currentPage: slug,
