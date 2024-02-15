@@ -2,7 +2,6 @@ import { MetadataRoute } from 'next';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 
-const VERCEL_URL = process.env.VERCEL_URL;
 const STRAPI_URL = process.env.STRAPI_URL;
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
@@ -47,7 +46,7 @@ export default async function sitemap({
   const posts = await response.json();
 
   return posts.data.map((post: ContentType<Post>) => ({
-    url: `${VERCEL_URL}/posts/${post.attributes.slug}`,
+    url: `https://arielgpe.dev/posts/${post.attributes.slug}`,
     lastModified: post.attributes.updatedAt,
   }));
 }
