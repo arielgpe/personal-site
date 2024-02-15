@@ -9,7 +9,7 @@ import { Tag } from '@/components/Tag/Tag';
 import { LinkRenderer } from '@/components/LinkRenderer';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import remarkEmoji from 'remark-emoji';
 import './postdetails.css';
 
@@ -18,12 +18,14 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
   const strapi = getStrapiClient();
   const router = useRouter();
   const [currentPost, setCurrentPost] = useState<ContentType<Post>>();
+  const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
       const slug = params.slug[0];
 
       const posts = await strapi.find<any>('posts', {
+        publicationState: 'preview',
         filters: {
           slug: {
             $eq: slug
@@ -36,6 +38,11 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
         }
       });
 
+
+      if (posts.data.length <= 0) {
+        setIsNotFound(true);
+      }
+
       setCurrentPost(posts.data[0] ?? null);
     };
 
@@ -46,8 +53,11 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    currentPost ?
-      <span className="post-detail">
+    isNotFound ? (
+        notFound()
+      ) :
+      currentPost ?
+        <span className="post-detail">
         <div className="mx-auto flex w-full max-w-6xl justify-start px-2">
           <button
             className="focus-outline mb-2 mt-8 flex hover:opacity-75"

@@ -27,9 +27,17 @@ export async function generateMetadata(
     });
 
     const posts = await response.json() as any;
-    return {
-      title: posts.data[0]?.attributes.title,
-    };
+    if (posts.data[0]) {
+      return {
+        title: posts.data[0]?.attributes.title ?? '404 - Not Found',
+      };
+    } else {
+      return {
+        title: {
+          absolute: '404 - Not Found'
+        }
+      };
+    }
   }
   return {
     title: 'Posts',
