@@ -14,6 +14,10 @@
   @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
 }
 
+#hero a {
+  @apply underline decoration-dashed underline-offset-8 ;
+}
+
 #hero p {
   @apply my-2;
 }

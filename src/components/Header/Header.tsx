@@ -1,12 +1,12 @@
 'use client';
 
 import { Hr } from '../Hr/Hr';
-import './header.css';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { clsx } from 'clsx';
 import { Site } from '@/interfaces/Site';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
+import './header.css';
 
 interface Props {
   activeNav?: string;
@@ -32,7 +32,7 @@ export const Header = ({activeNav}: Props) => {
       <LinkButton id="skip-to-content" href="#main-content">Skip to content</LinkButton>
       <div className="nav-container">
         <div className="top-nav-wrap">
-          <LinkButton href="/" className="logo whitespace-nowrap">
+          <LinkButton href="/" className="logo whitespace-nowrap text-skin-accent">
             ArielGpe
           </LinkButton>
           <nav id="nav-menu">
@@ -43,24 +43,11 @@ export const Header = ({activeNav}: Props) => {
               aria-expanded="false"
               aria-controls="menu-items"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="menu-icon"
-              >
-                <line x1="7" y1="12" x2="21" y2="12" className="line"></line>
-                <line x1="3" y1="6" x2="21" y2="6" className="line"></line>
-                <line x1="12" y1="18" x2="21" y2="18" className="line"></line>
-                <line x1="18" y1="6" x2="6" y2="18" className="close"></line>
-                <line x1="6" y1="6" x2="18" y2="18" className="close"></line>
-              </svg>
+              <div className={clsx('hamburger', isMenuOpen ? 'hamburger-is-active': '')}>
+                <span className="line"></span>
+                <span className="line"></span>
+                <span className="line"></span>
+              </div>
             </button>
             <ul id="menu-items" className={clsx(`sm:flex`, isMenuOpen ? '' : 'display-none')}>
               <li>
