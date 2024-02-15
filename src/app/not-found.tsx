@@ -32,7 +32,7 @@ const notFound = () => {
       </section>
       <Footer/>
     </main>
-  )
-}
+  );
+};
 
 export default notFound;
