@@ -33,7 +33,7 @@ export const PostPages = ({params}: { params: { slug: string } }) => {
         sort: 'publishedAt:desc', populate: '*',
         pagination: {
           page: slug,
-          pageSize: 1
+          pageSize: 3
         }
       });
       const pagntn = posts.meta.pagination as any;
