@@ -3,10 +3,9 @@ import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs';
-import { FrozenRouter } from '@/components/FrozenRouter';
 
 export const metadata: Metadata = {
-  title: 'About > Ariel Guzman ',
+  title: 'About',
   description: 'About page',
 };
 

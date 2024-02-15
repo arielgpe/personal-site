@@ -2,11 +2,13 @@ import { ReactNode } from 'react';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { Metadata } from 'next';
-import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Posts > Ariel Guzman ',
-  description: 'List of posts',
+  title: {
+    default: 'Posts',
+    template: '%s > Ariel Guzman'
+  },
+  description: 'List of posts made by me',
 };
 
 export default function PageLayout({

@@ -1,3 +1,5 @@
+'use client';
+
 import { getStrapiClient } from '@/utils/getStrapiClient';
 import { useEffect, useState } from 'react';
 import { Main } from '@/components/Main/Main';
@@ -31,7 +33,7 @@ export const PostPages = ({params}: { params: { slug: string } }) => {
         sort: 'publishedAt:desc', populate: '*',
         pagination: {
           page: slug,
-          pageSize: 3
+          pageSize: 1
         }
       });
       const pagntn = posts.meta.pagination as any;

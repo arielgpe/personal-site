@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Tags > Ariel Guzman ',
+  title: 'Tags ',
   description: 'Search by tag',
 };
 

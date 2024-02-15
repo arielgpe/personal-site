@@ -2,7 +2,7 @@ import Rss from 'rss';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 
-const siteUrl = 'https://arielgpe.dev';
+const VERCEL_URL = process.env.VERCEL_URL || '';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
 const STRAPI_URL = process.env.STRAPI_URL || '';
 
@@ -12,8 +12,8 @@ export const GET = async () => {
     const feed = new Rss({
       title: 'Ariel Guzman',
       description: 'Developer, gamer.',
-      feed_url: `${siteUrl}/api/blog/feed.xml`,
-      site_url: siteUrl,
+      feed_url: `${VERCEL_URL}/api/blog/feed.xml`,
+      site_url: VERCEL_URL,
       language: 'en',
     });
 
@@ -30,7 +30,7 @@ export const GET = async () => {
       feed.item({
         title: post.attributes.title,
         description: post.attributes.description,
-        url: `${siteUrl}/posts/${post.attributes.slug}`,
+        url: `${VERCEL_URL}/posts/${post.attributes.slug}`,
         date: post.attributes.publishedAt,
       });
     });
