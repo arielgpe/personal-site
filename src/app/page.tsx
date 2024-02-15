@@ -80,14 +80,14 @@ const Home = () => {
               <span className="sr-only">RSS Feed</span>
             </a>
             <p>
-              I'm a full stack developer with over 10 years of experience with commercial level applications.
+              I&apos;m a full stack developer with over 10 years of experience with commercial level applications.
             </p>
             <p>
               I enjoy strength training, video games and experimenting with new technologies.
-              Lately I've been playing Final Fantasy 14 and I'm having a blast!
+              Lately I&apos;ve been playing Final Fantasy 14 and I&apos;m having a blast!
             </p>
             <p>
-              Currently, I'm on the lookout for new opportunities in the React or Node.js area. If you think we could be
+              Currently, I&apos;m on the lookout for new opportunities in the React or Node.js area. If you think we could be
               a good match, feel free to <LinkButton href={'mailto:ariel.guzman01@gmail.com?subject=job offer>'}>drop me an
               email</LinkButton> or check out my <LinkButton href={'https://linkedin.com/in/arielgpe'}>LinkedIn profile</LinkButton>.
             </p>
