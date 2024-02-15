@@ -13,7 +13,7 @@ export const PostsContainer = ({params}: { params: { slug: string } }) => {
     if ('slug' in params) {
       setIsParamNan(isNaN(Number(params.slug[0])));
     }
-    setIsLoading(false)
+    setIsLoading(false);
   }, [params]);
 
   return (

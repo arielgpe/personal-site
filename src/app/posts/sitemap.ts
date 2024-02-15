@@ -27,8 +27,8 @@ export default async function sitemap({
                                       }: {
   id: number
 }): Promise<MetadataRoute.Sitemap> {
-  const start = id * 50000
-  const end = start + 50000
+  const start = id * 50000;
+  const end = start + 50000;
 
   const url = new URL(`${STRAPI_URL}/api/posts`);
   url.searchParams.append('fields', 'id');
@@ -49,5 +49,5 @@ export default async function sitemap({
   return posts.data.map((post: ContentType<Post>) => ({
     url: `${VERCEL_URL}/posts/${post.attributes.slug}`,
     lastModified: post.attributes.updatedAt,
-  }))
+  }));
 }
