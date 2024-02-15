@@ -11,8 +11,20 @@ const IBMPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Ariel Guzman',
-  description: 'Personal Site',
+  title: {
+    template: '%s > Ariel Guzman',
+    default: 'Ariel Guzman'
+  },
+  applicationName: 'ArielGpe',
+  referrer: 'origin-when-cross-origin',
+  description: 'Ariel Guzman personal site and blog',
+  authors: [
+    {
+      name: 'Ariel Guzman',
+      url: 'https://arielgpe.dev'
+    }
+  ],
+  keywords: ['Next.js', 'React', 'Javascript', 'Html', 'Css', 'Programming'],
   alternates: {
     types: {
       'application/rss+xml': 'https://arielgpe.dev/api/blog/feed.xml',

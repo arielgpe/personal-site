@@ -1,31 +1,45 @@
-'use client';
-
-
-import { PostsDetails } from '@/components/PostDetails/PostsDetails';
-import { useEffect, useState } from 'react';
-import { PostPages } from '@/components/Posts/PostPages';
 import { FrozenRouter } from '@/components/FrozenRouter';
+import { PostsContainer } from '@/components/Posts/PostsContainer';
+import { Metadata } from 'next';
 
-const Posts = ({params}: { params: { slug: string } }) => {
+interface Props {
+  params: { slug: string };
+}
 
-  const [isParamNan, setIsParamNan] = useState(false);
+const STRAPI_URL = process.env.STRAPI_URL;
+const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
+export async function generateMetadata(
+  {params}: Props,
+): Promise<Metadata> {
 
-  useEffect(() => {
-    if ('slug' in params) {
-      setIsParamNan(isNaN(Number(params.slug[0])));
-    }
-  }, [params]);
+  if (isNaN(Number(params?.slug ? params?.slug[0] : 0))) {
+    const url = new URL(`${STRAPI_URL}/api/posts`);
+    url.searchParams.append('fields[0]', 'title');
+    url.searchParams.append('filters[slug][$eq]', params.slug[0]);
 
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${STRAPI_TOKEN}`
+      }
+    });
+
+    const posts = await response.json() as any;
+    return {
+      title: posts.data[0]?.attributes.title,
+    };
+  }
+  return {
+    title: 'Posts',
+  };
+}
+
+const Posts = ({params}: Props) => {
   return (
     <FrozenRouter>
-      {isParamNan ? (
-          <PostsDetails params={params}/>
-        )
-        : (
-          <PostPages params={params}/>
-        )
-      }
+      <PostsContainer params={params}/>
     </FrozenRouter>
   );
 };

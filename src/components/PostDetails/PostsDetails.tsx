@@ -1,4 +1,5 @@
-import './postdetails.css';
+'use client';
+
 import { getStrapiClient } from '@/utils/getStrapiClient';
 import { useEffect, useState } from 'react';
 import Datetime from '@/components/Datetime/Datetime';
@@ -10,6 +11,8 @@ import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 import { useRouter } from 'next/navigation';
 import remarkEmoji from 'remark-emoji';
+import './postdetails.css';
+
 
 export const PostsDetails = ({params}: { params: { slug: string } }) => {
   const strapi = getStrapiClient();
@@ -69,7 +72,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
           />
           <article id="article" role="article" className="prose mx-auto mt-8 max-w-6xl">
             <Markdown skipHtml={false} components={{a: LinkRenderer}}
-                      // @ts-expect-error array is not assignable to string, but react-markdown can handle it
+              // @ts-expect-error array is not assignable to string, but react-markdown can handle it
                       remarkPlugins={[remarkGfm, remarkEmoji]}>{currentPost.attributes.body}</Markdown>
           </article>
 
