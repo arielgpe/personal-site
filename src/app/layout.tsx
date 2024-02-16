@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import { NextThemesProvider } from '@/components/NextThemesProvider';
 import { Analytics } from '@vercel/analytics/react';
 import { Header } from '@/components/Header/Header';
+import { Footer } from '@/components/Footer/Footer';
 
 const PROD_URL = process.env.PROD_URL;
 
@@ -46,10 +47,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={IBMPlexMono.variable}>
         <NextThemesProvider>
-          <main className={'theme-light dark:theme-dark flex flex-col h-screen'}>
+          <main className={'theme-light dark:theme-dark flex flex-col min-h-screen'}>
             <Header/>
             {children}
             <Analytics />
+            <Footer/>
           </main>
         </NextThemesProvider>
       </body>

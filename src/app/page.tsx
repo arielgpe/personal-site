@@ -1,7 +1,6 @@
 'use client';
 
 import { Fragment, useEffect, useState } from 'react';
-import { Footer } from '@/components/Footer/Footer';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { Hr } from '@/components/Hr/Hr';
 import { Socials } from '@/components/Socials/Socials';
@@ -148,7 +147,6 @@ const Home = () => {
             </LinkButton>
           </div>
         </main>
-        <Footer/>
       </FrozenRouter>
     </>
   );

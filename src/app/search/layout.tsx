@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Footer } from '@/components/Footer/Footer';
 import { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs';
 
@@ -14,12 +13,11 @@ export default function PageLayout({
   children: ReactNode;
 }>) {
   return (
-    <main className={'flex flex-col h-screen'}>
+    <main className={'flex flex-col'}>
       <section className={'animate-fade-in'}>
         <Breadcrumbs/>
         {children}
       </section>
-      <Footer/>
     </main>
   );
 }

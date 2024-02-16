@@ -1,4 +1,3 @@
-import { Footer } from '@/components/Footer/Footer';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { Metadata } from 'next';
 
@@ -28,7 +27,6 @@ const notFound = () => {
           </div>
         </main>
       </section>
-      <Footer/>
     </main>
   );
 };

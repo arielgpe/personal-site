@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Footer } from '@/components/Footer/Footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -16,9 +15,8 @@ export default function PageLayout({
   children: ReactNode;
 }>) {
   return (
-    <main className={'flex flex-col h-screen'}>
+    <main className={'flex flex-col'}>
       <section className={'animate-fade-in'}>{children}</section>
-      <Footer/>
     </main>
   );
 }
