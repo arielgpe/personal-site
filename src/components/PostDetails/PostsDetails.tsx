@@ -12,13 +12,18 @@ import { Post } from '@/interfaces/Posts';
 import { notFound, useRouter } from 'next/navigation';
 import remarkEmoji from 'remark-emoji';
 import './postdetails.css';
+import { DiscussionEmbed } from 'disqus-react';
+import { useTheme } from 'next-themes';
 
+const PROD_URL = process.env.PROD_URL;
 
 export const PostsDetails = ({params}: { params: { slug: string } }) => {
   const strapi = getStrapiClient();
   const router = useRouter();
   const [currentPost, setCurrentPost] = useState<ContentType<Post>>();
   const [isNotFound, setIsNotFound] = useState(false);
+  const {theme} = useTheme();
+
 
   useEffect(() => {
     const getData = async () => {
@@ -109,6 +114,19 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
             links
           </div>
         </main>
+          {
+            currentPost.attributes.comments ? <DiscussionEmbed
+              key={theme}
+              shortname="arielgpe-blog"
+              config={
+                {
+                  url: `${PROD_URL}/posts/${currentPost.attributes.slug}/`,
+                  identifier: currentPost.id.toString(),
+                  title: currentPost.attributes.title
+                }
+              }
+            /> : null
+          }
       </span> : null
   );
 };

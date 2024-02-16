@@ -1,4 +1,4 @@
-import { Children, ContentType, CreatedBy, UpdatedBy } from '@/interfaces/Strapi';
+import { Children, CreatedBy, UpdatedBy } from '@/interfaces/Strapi';
 import { Tags } from '@/interfaces/Tags';
 
 export interface Post {
@@ -8,6 +8,7 @@ export interface Post {
   publishedAt: string;
   featured: boolean;
   description: string;
+  comments: boolean;
   body: Body[];
   slug: string;
   tags: Tags;

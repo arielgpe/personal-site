@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const VERCEL_URL = process.env.VERCEL_URL;
+const PROD_URL = process.env.PROD_URL;
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -14,6 +14,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/search*'],
       },
     ],
-    sitemap: `${VERCEL_URL}/sitemap.xml`,
+    sitemap: `${PROD_URL}/sitemap.xml`,
   };
 }
