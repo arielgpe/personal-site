@@ -29,7 +29,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState<string>();
   const {scrollYProgress} = useScroll({
-    container: ref,
+    target: ref,
     offset: ['end end', 'start start'],
   });
 
