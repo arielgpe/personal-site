@@ -13,6 +13,8 @@ import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 import { FrozenRouter } from '@/components/FrozenRouter';
 
+const PROD_URL = process.env.PROD_URL;
+
 const Home = () => {
   const strapi = getStrapiClient();
 
@@ -62,7 +64,7 @@ const Home = () => {
             <h1>Ariel Guzmán</h1>
             <a
               target="_blank"
-              href="https://arielgpe.dev/api/blog/feed.xml"
+              href={`${PROD_URL}/api/blog/feed.xml`}
               className="rss-link"
               aria-label="rss feed"
               title="RSS Feed"

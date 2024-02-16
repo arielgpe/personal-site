@@ -5,10 +5,13 @@ import { ReactNode } from 'react';
 import { NextThemesProvider } from '@/components/NextThemesProvider';
 import { Analytics } from '@vercel/analytics/react';
 
+const PROD_URL = process.env.PROD_URL;
+
 const IBMPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
   subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700']
 });
+
 
 export const metadata: Metadata = {
   title: {
@@ -21,13 +24,13 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Ariel Guzman',
-      url: 'https://arielgpe.dev'
+      url: PROD_URL
     }
   ],
   keywords: ['Next.js', 'React', 'Javascript', 'Html', 'Css', 'Programming'],
   alternates: {
     types: {
-      'application/rss+xml': 'https://arielgpe.dev/api/blog/feed.xml',
+      'application/rss+xml': `${PROD_URL}/api/blog/feed.xml`,
     }
   }
 };

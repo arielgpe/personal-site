@@ -4,6 +4,7 @@ import { Post } from '@/interfaces/Posts';
 
 const STRAPI_URL = process.env.STRAPI_URL;
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
+const PROD_URL = process.env.PROD_URL;
 
 export async function generateSitemaps() {
   const url = new URL(`${STRAPI_URL}/api/posts`);
@@ -46,7 +47,7 @@ export default async function sitemap({
   const posts = await response.json();
 
   return posts.data.map((post: ContentType<Post>) => ({
-    url: `https://arielgpe.dev/posts/${post.attributes.slug}`,
+    url: `${PROD_URL}/posts/${post.attributes.slug}`,
     lastModified: post.attributes.updatedAt,
   }));
 }
