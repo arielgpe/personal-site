@@ -1,16 +1,13 @@
 'use client';
 
-import { Hr } from '../Hr/Hr';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { clsx } from 'clsx';
 import { Site } from '@/interfaces/Site';
 import { useTheme } from 'next-themes';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './header.css';
-
-interface Props {
-  activeNav?: string;
-}
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 export const SITE: Site = {
   website: 'https://astro-paper.pages.dev/', // replace this with your deployed domain
@@ -23,13 +20,50 @@ export const SITE: Site = {
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 };
 
-export const Header = ({activeNav}: Props) => {
+export const Header = () => {
+  const ref = useRef(null);
+  const headerRef = useRef<any | null>(null);
+  const pathname = usePathname();
+
   const {theme, setTheme} = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentTab, setCurrentTab] = useState<string>();
+  const {scrollYProgress} = useScroll({
+    container: ref,
+    offset: ['end end', 'start start'],
+  });
+
+  const [hookedYPostion, setHookedYPosition] = useState(0);
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    setHookedYPosition(latest);
+  });
+
+  useEffect(() => {
+    const pathList = pathname.replace(/\/+$/, '').split('/').slice(1);
+    setCurrentTab(pathList[0]);
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+    if (isMenuOpen) {
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [headerRef, isMenuOpen]);
 
   return (
-    <header className={'flex-initial'}>
-      <LinkButton id="skip-to-content" href="#main-content">Skip to content</LinkButton>
+    <header
+      ref={headerRef}
+      className={'sticky top-0 z-40 w-full backdrop-blur-xl flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent'}>
       <div className="nav-container">
         <div className="top-nav-wrap">
           <LinkButton href="/" className="logo mt-2 sm:mt-0 whitespace-nowrap text-skin-accent">
@@ -43,7 +77,7 @@ export const Header = ({activeNav}: Props) => {
               aria-expanded="false"
               aria-controls="menu-items"
             >
-              <div className={clsx('hamburger', isMenuOpen ? 'hamburger-is-active': '')}>
+              <div className={clsx('hamburger', isMenuOpen ? 'hamburger-is-active' : '')}>
                 <span className="line"></span>
                 <span className="line"></span>
                 <span className="line"></span>
@@ -51,17 +85,17 @@ export const Header = ({activeNav}: Props) => {
             </button>
             <ul id="menu-items" className={clsx(`sm:flex`, isMenuOpen ? '' : 'display-none')}>
               <li>
-                <LinkButton href="/posts/" className={activeNav === 'posts' ? 'active' : ''}>
+                <LinkButton href="/posts/" className={currentTab === 'posts' ? 'active' : ''}>
                   Posts
                 </LinkButton>
               </li>
               <li>
-                <LinkButton href="/tags/" className={activeNav === 'tags' ? 'active' : ''}>
+                <LinkButton href="/tags/" className={currentTab === 'tags' ? 'active' : ''}>
                   Tags
                 </LinkButton>
               </li>
               <li>
-                <LinkButton href="/about/" className={activeNav === 'about' ? 'active' : ''}>
+                <LinkButton href="/about/" className={currentTab === 'about' ? 'active' : ''}>
                   About
                 </LinkButton>
               </li>
@@ -69,7 +103,7 @@ export const Header = ({activeNav}: Props) => {
                 <LinkButton
                   href="/search/"
                   className={clsx(`focus-outline p-3 sm:p-1`,
-                    activeNav === 'search' ? 'active' : ''
+                    currentTab === 'search' ? 'active' : ''
                     , 'flex')}
                   aria-label="search"
                   title="Search"
@@ -111,7 +145,7 @@ export const Header = ({activeNav}: Props) => {
           </nav>
         </div>
       </div>
-      <Hr/>
+      <motion.div className={'mx-auto max-w-6xl h-0.5 bg-skin-accent sticky'} style={{scaleX: hookedYPostion ?? 0}}/>
     </header>
   );
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import { getStrapiClient } from '@/utils/getStrapiClient';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Datetime from '@/components/Datetime/Datetime';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -14,6 +14,7 @@ import remarkEmoji from 'remark-emoji';
 import './postdetails.css';
 import { DiscussionEmbed } from 'disqus-react';
 import { useTheme } from 'next-themes';
+import { ShareLinks } from '@/components/ShareLinks/ShareLinks';
 
 const PROD_URL = process.env.PROD_URL;
 
@@ -23,7 +24,6 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
   const [currentPost, setCurrentPost] = useState<ContentType<Post>>();
   const [isNotFound, setIsNotFound] = useState(false);
   const {theme} = useTheme();
-
 
   useEffect(() => {
     const getData = async () => {
@@ -43,7 +43,6 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
         }
       });
 
-
       if (posts.data.length <= 0) {
         setIsNotFound(true);
       }
@@ -57,12 +56,22 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     isNotFound ? (
         notFound()
       ) :
       currentPost ?
+
         <span className="post-detail">
+
         <div className="mx-auto flex w-full max-w-6xl justify-start px-2">
           <button
             className="focus-outline mb-2 mt-8 flex hover:opacity-75"
@@ -87,19 +96,18 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
           />
           <article id="article" role="article" className="prose mx-auto mt-8 max-w-6xl">
             <Markdown skipHtml={false} components={{a: LinkRenderer}}
-              // @ts-expect-error array is not assignable to string, but react-markdown can handle it
                       remarkPlugins={[remarkGfm, remarkEmoji]}>{currentPost.attributes.body}</Markdown>
           </article>
 
           <ul className="my-8">
             {currentPost.attributes.tags.data.map(tag => <Tag key={tag.id} tag={tag.attributes.name}/>)}
           </ul>
-
           <div
             className="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
           >
             <button
               id="back-to-top"
+              onClick={scrollToTop}
               className="focus-outline whitespace-nowrap py-1 hover:opacity-75"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="rotate-90">
@@ -110,8 +118,9 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
               <span>Back to Top</span>
             </button>
 
-            {/*<ShareLinks/>*/}
-            links
+            <Suspense fallback={null}>
+              <ShareLinks/>
+            </Suspense>
           </div>
         </main>
           {
