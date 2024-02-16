@@ -1,4 +1,4 @@
-import { Children, CreatedBy, UpdatedBy } from '@/interfaces/Strapi';
+import { CreatedBy, UpdatedBy } from '@/interfaces/Strapi';
 import { Tags } from '@/interfaces/Tags';
 
 export interface Post {
@@ -9,15 +9,9 @@ export interface Post {
   featured: boolean;
   description: string;
   comments: boolean;
-  body: Body[];
+  body: string;
   slug: string;
   tags: Tags;
   createdBy: CreatedBy;
   updatedBy: UpdatedBy;
-}
-
-export interface Body {
-  type: string;
-  children: Children[];
-  level?: number;
 }

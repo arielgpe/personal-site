@@ -30,12 +30,14 @@ export async function generateMetadata(
     if (posts.data[0]) {
       return {
         title: posts.data[0]?.attributes.title ?? '404 - Not Found',
+        description: posts.data[0]?.attributes.description
       };
     } else {
       return {
         title: {
-          absolute: '404 - Not Found'
-        }
+          absolute: '404 - Not Found',
+        },
+        description: 'Page not found'
       };
     }
   }

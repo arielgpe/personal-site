@@ -1,7 +1,6 @@
 'use client';
 
 import { Fragment, useEffect, useState } from 'react';
-import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { Hr } from '@/components/Hr/Hr';
@@ -56,7 +55,6 @@ const Home = () => {
 
   return (
     <>
-      <Header/>
       <FrozenRouter>
         <main id="main-content">
 

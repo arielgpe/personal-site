@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { Metadata } from 'next';
 
@@ -18,7 +17,6 @@ export default function PageLayout({
 }>) {
   return (
     <main className={'flex flex-col h-screen'}>
-      <Header activeNav={'posts'}/>
       <section className={'animate-fade-in'}>{children}</section>
       <Footer/>
     </main>

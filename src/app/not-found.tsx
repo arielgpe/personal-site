@@ -1,4 +1,3 @@
-import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { Metadata } from 'next';
@@ -8,13 +7,12 @@ export const metadata: Metadata = {
   title: {
     absolute: '404 - Not Found'
   },
-  description: '404 - not found',
+  description: 'Page not found',
 };
 
 const notFound = () => {
   return (
     <main className={'flex flex-col h-screen'}>
-      <Header/>
       <section className={'animate-fade-in mt-auto'}>
         <main id="main-content">
           <div className="not-found-wrapper">
