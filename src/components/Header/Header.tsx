@@ -21,7 +21,6 @@ export const SITE: Site = {
 };
 
 export const Header = () => {
-  const ref = useRef(null);
   const headerRef = useRef<any | null>(null);
   const pathname = usePathname();
 
@@ -29,7 +28,6 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState<string>();
   const {scrollYProgress} = useScroll({
-    target: ref,
     offset: ['end end', 'start start'],
   });
 
