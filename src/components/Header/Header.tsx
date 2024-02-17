@@ -32,8 +32,6 @@ export const Header = () => {
     offset: ['end end', 'start start'],
   });
 
-  const iconClass = 'fill-transparent stroke-current stroke-2 hover:text-skin-accent hover:fill-transparent';
-
   const [hookedYPostion, setHookedYPosition] = useState(0);
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     setHookedYPosition(latest);
@@ -131,8 +129,7 @@ export const Header = () => {
                     aria-label="auto"
                     aria-live="polite"
                   >
-                    <IconMoon id={'moon-svg'} className={iconClass}/>
-                    <IconSun id={'sun-svg'} className={iconClass}/>
+                    <ThemeToggleButton theme={theme}/>
                   </button>
                 </li>
               }
@@ -143,4 +140,11 @@ export const Header = () => {
       <motion.div className={'mx-auto max-w-6xl h-0.5 bg-skin-accent sticky'} style={{scaleX: hookedYPostion ?? 0}}/>
     </header>
   );
+};
+
+const ThemeToggleButton = ({theme}: { theme: string | undefined }) => {
+  const iconClass = 'fill-transparent stroke-current stroke-2 hover:text-skin-accent hover:fill-transparent';
+
+  return theme === 'light' ? <IconMoon className={iconClass}/> :
+    <IconSun className={iconClass}/>;
 };
