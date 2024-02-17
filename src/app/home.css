@@ -11,7 +11,7 @@
 }
 
 #hero .rss-icon {
-  @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+  @apply mb-2 h-6 w-6 text-skin-accent scale-100 fill-transparent stroke-current stroke-2 opacity-90 hover:fill-transparent sm:scale-100 sm:mb-3;
 }
 
 #hero a {

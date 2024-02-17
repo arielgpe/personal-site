@@ -1,15 +1,14 @@
 import { LinkButton } from '@/components/LinkButton/LinkButton';
-import { cloneElement, createElement, Fragment } from 'react';
 import { SITE } from '@/components/Header/Header';
-import socialIcons from '@/assets/socialIcons';
 import './socials.css';
+import { SocialIcons } from '@/components/SocialIcons';
 
 interface Props {
   centered?: boolean;
 }
 
 type SocialObjects = {
-  name: keyof typeof socialIcons;
+  name: string;
   href: string;
   active: boolean;
   linkTitle: string;
@@ -56,11 +55,7 @@ export const Socials = ({centered}: Props) => {
             className="link-button"
             title={social.linkTitle}
           >
-            {
-              cloneElement(socialIcons[social.name], {
-                className: 'icon-tabler'
-              })
-            }
+            <SocialIcons iconName={social.name} />
             <span className="sr-only">{social.linkTitle}</span>
           </LinkButton>
         ))
