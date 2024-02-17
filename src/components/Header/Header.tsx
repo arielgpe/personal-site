@@ -4,7 +4,7 @@ import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { clsx } from 'clsx';
 import { Site } from '@/interfaces/Site';
 import { useTheme } from 'next-themes';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import './header.css';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -118,21 +118,21 @@ export const Header = () => {
                   <span className="sr-only">Search</span>
                 </LinkButton>
               </li>
-              {
 
-                <li>
-                  <button
-                    onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                    id="theme-btn"
-                    className="focus-outline"
-                    title="Toggles light & dark"
-                    aria-label="auto"
-                    aria-live="polite"
-                  >
+              <li>
+                <button
+                  onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                  id="theme-btn"
+                  className="focus-outline"
+                  title="Toggles light & dark"
+                  aria-label="auto"
+                  aria-live="polite"
+                >
+                  <Suspense fallback={null}>
                     <ThemeToggleButton theme={theme}/>
-                  </button>
-                </li>
-              }
+                  </Suspense>
+                </button>
+              </li>
             </ul>
           </nav>
         </div>
@@ -143,8 +143,20 @@ export const Header = () => {
 };
 
 const ThemeToggleButton = ({theme}: { theme: string | undefined }) => {
+  const [selectedTheme, setSelectedTheme] = useState<string>();
   const iconClass = 'fill-transparent stroke-current stroke-2 hover:text-skin-accent hover:fill-transparent';
 
-  return theme === 'light' ? <IconMoon className={iconClass}/> :
-    <IconSun className={iconClass}/>;
+  useEffect(() => {
+    setSelectedTheme(theme);
+  }, [theme]);
+
+  return (
+    <span>
+      {
+        selectedTheme === 'light' ?
+          <IconMoon className={iconClass}/> :
+          <IconSun className={iconClass}/>
+      }
+    </span>
+  );
 };

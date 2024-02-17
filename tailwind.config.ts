@@ -6,13 +6,18 @@ function withOpacity(variableName: any) {
     return `rgb(var(${variableName}))`;
   };
 }
+const colors = ['#F8E9E9', '#EDF9FE', '#F5E1E3', '#F4E9F0', '#E4EFD6', '#F8D3F3', '#E9E3E0', '#F7F7D7'];
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  safelist: [
+    ...colors.map((color) => `bg-[${color}]`)
   ],
   theme: {
     // Remove the following screen breakpoint or add other breakpoints
@@ -28,6 +33,13 @@ module.exports = {
           accent: withOpacity('--color-accent'),
           inverted: withOpacity('--color-fill'),
         },
+      },
+      textDecorationColor: {
+        skin: {
+          base: withOpacity('--color-text-base'),
+          accent: withOpacity('--color-accent'),
+          inverted: withOpacity('--color-fill'),
+        }
       },
       backgroundColor: {
         skin: {
