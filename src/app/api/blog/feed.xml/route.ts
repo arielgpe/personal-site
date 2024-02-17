@@ -2,7 +2,7 @@ import Rss from 'rss';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 
-const PROD_URL = process.env.PROD_URL || '';
+const PROD_URL = 'http://127.0.0.1:3000' || '';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
 const STRAPI_URL = process.env.STRAPI_URL || '';
 
@@ -18,6 +18,7 @@ export const GET = async () => {
     });
 
     const response = await fetch(`${STRAPI_URL}/api/posts`, {
+      cache: 'no-store',
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -25,6 +26,8 @@ export const GET = async () => {
       }
     });
     const posts = await response.json();
+
+    console.log('posts.data?', posts.data);
 
     posts.data.forEach((post: ContentType<Post>) => {
       feed.item({

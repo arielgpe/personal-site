@@ -19,6 +19,7 @@ export async function generateMetadata(
     url.searchParams.append('filters[slug][$eq]', params.slug[0]);
 
     const response = await fetch(url, {
+      cache: 'reload',
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

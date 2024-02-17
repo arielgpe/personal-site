@@ -12,6 +12,7 @@ export async function generateSitemaps() {
   url.searchParams.append('sort', 'publishedAt:desc');
 
   const response = await fetch(url, {
+    cache: 'reload',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -38,6 +39,7 @@ export default async function sitemap({
   url.searchParams.append('filters[id][$between][1]', end.toString());
 
   const response = await fetch(url, {
+    cache: 'reload',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
