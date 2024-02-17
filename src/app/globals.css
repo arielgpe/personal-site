@@ -4,8 +4,7 @@
 
 @layer base {
 
-  :root,
-  html[data-theme="light"] {
+  :root {
     --color-fill: 253, 243, 237;
     --color-text-base: 40, 39, 40;
     --color-accent: 183, 6, 72;
@@ -14,7 +13,7 @@
     --color-border: 183, 6, 72;
   }
 
-  html[data-theme="dark"] {
+  :root.dark {
     --color-fill: 51, 51, 53;
     --color-text-base: 234, 237, 243;
     --color-accent: 249, 222, 201;
@@ -44,13 +43,11 @@
   .prose {
     @apply prose-headings:!mb-3 prose-headings:!text-skin-base
     prose-h3:italic prose-p:!text-skin-base
-    prose-a:!text-skin-base prose-a:!decoration-dashed prose-a:underline-offset-8
+    prose-a:!text-skin-base prose-a:!decoration-dashed prose-a:underline-offset-8 prose-a:!inline
     hover:prose-a:text-skin-accent prose-blockquote:!border-l-skin-accent
     prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
     prose-figcaption:!text-skin-base prose-figcaption:opacity-70
     prose-strong:!text-skin-base
-
-
     prose-code:rounded prose-code:bg-skin-card
     prose-code:bg-opacity-75 prose-code:p-1
     prose-code:before:!content-none prose-code:after:!content-none
@@ -59,7 +56,7 @@
     prose-table:text-skin-base prose-th:border
     prose-th:border-skin-line prose-td:border
     prose-td:border-skin-line prose-img:!my-2
-    prose-img:mx-auto prose-img:border-2
+    prose-img:mx-auto prose-img:border-2 prose-img:rounded-xl
     prose-img:border-skin-line prose-hr:!border-skin-line;
   }
 
@@ -128,7 +125,7 @@
   }
 
   .about-md ul {
-      @apply list-disc ml-5
+      @apply list-disc ml-5 marker:text-skin-accent mt-2;
   }
 
   .about-md img {

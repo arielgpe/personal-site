@@ -17,6 +17,7 @@ export async function generateMetadata(
     const url = new URL(`${STRAPI_URL}/api/posts`);
     url.searchParams.append('fields[0]', 'title');
     url.searchParams.append('filters[slug][$eq]', params.slug[0]);
+    url.searchParams.append('filters[slug][$eq][0]', params.slug[0]);
 
     const response = await fetch(url, {
       method: 'GET',
@@ -27,17 +28,11 @@ export async function generateMetadata(
     });
 
     const posts = await response.json() as any;
+
     if (posts.data[0]) {
       return {
-        title: posts.data[0]?.attributes.title ?? '404 - Not Found',
+        title: posts.data[0]?.attributes.title,
         description: posts.data[0]?.attributes.description
-      };
-    } else {
-      return {
-        title: {
-          absolute: '404 - Not Found',
-        },
-        description: 'Page not found'
       };
     }
   }

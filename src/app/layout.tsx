@@ -7,7 +7,7 @@ import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
-const PROD_URL = process.env.PROD_URL;
+const PROD_URL = process.env.PROD_URL || '';
 const GA_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID || '';
 
 const IBMPlexMono = IBM_Plex_Mono({
@@ -17,6 +17,7 @@ const IBMPlexMono = IBM_Plex_Mono({
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL(PROD_URL),
   title: {
     template: '%s > Ariel Guzman',
     default: 'Ariel Guzman'
