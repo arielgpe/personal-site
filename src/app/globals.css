@@ -123,16 +123,20 @@
     white-space: pre;
   }
 
-  .markdown-container {
-    a {
+  .about-md a, .markdown-container a {
       @apply underline decoration-dashed underline-offset-8 ;
-    }
   }
 
-  .about-md {
-    ul {
+  .about-md ul {
       @apply list-disc ml-5
-    }
+  }
+
+  .about-md img {
+    @apply w-40 h-60 object-cover rounded-lg mx-2;
+  }
+
+  .about-md p {
+    @apply inline-flex;
   }
 
   .not-found-wrapper {
