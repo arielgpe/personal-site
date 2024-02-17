@@ -17,7 +17,6 @@ export async function generateMetadata(
     const url = new URL(`${STRAPI_URL}/api/posts`);
     url.searchParams.append('fields[0]', 'title');
     url.searchParams.append('filters[slug][$eq]', params.slug[0]);
-    url.searchParams.append('filters[slug][$eq][0]', params.slug[0]);
 
     const response = await fetch(url, {
       method: 'GET',
