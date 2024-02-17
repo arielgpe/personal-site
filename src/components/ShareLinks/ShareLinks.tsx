@@ -1,7 +1,6 @@
 import { LinkButton } from '@/components/LinkButton/LinkButton';
-import socialIcons from '@/assets/socialIcons';
-import { cloneElement } from 'react';
 import { usePathname } from 'next/navigation';
+import { SocialIcons } from '@/components/SocialIcons';
 
 const PROD_URL = process.env.PROD_URL;
 
@@ -55,9 +54,7 @@ export const ShareLinks = () => {
               className="scale-90 p-2 hover:rotate-6 sm:p-1"
               title={social.linkTitle}
             >
-              {
-                cloneElement(socialIcons[social.name])
-              }
+              <SocialIcons iconName={social.name} />
               <span className="sr-only">{social.linkTitle}</span>
             </LinkButton>
           ))
