@@ -3,6 +3,7 @@
 import Datetime from '../Datetime/Datetime';
 import { LinkButton } from '@/components/LinkButton/LinkButton';
 import { Post } from '@/interfaces/Posts';
+import { Tag } from '@/components/Tag/Tag';
 
 export interface Props {
   href?: string;
@@ -30,7 +31,12 @@ export const Card = ({href, frontmatter, secHeading = true}: Props) => {
         )}
       </LinkButton>
       <Datetime pubDatetime={frontmatter.createdAt} modDatetime={frontmatter.updatedAt}/>
-      <p>{frontmatter.description}</p>
+      <p className={'!mb-0'}>
+        {frontmatter.description}
+      </p>
+      <ul>
+        {frontmatter.tags.data.map(tag => <Tag key={tag.id} tag={tag.attributes.name}/>)}
+      </ul>
     </li>
   );
 };

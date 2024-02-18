@@ -32,7 +32,7 @@ const Tags = () => {
     <FrozenRouter>
       <Main pageTitle="Tags" pageDesc="list of tags used so far">
         <ul>
-          {tags.map(tag => <Tag key={tag.id} tag={tag.attributes.name} size="lg"/>)}
+          {tags.map(tag => <Tag key={tag.id} tag={tag.attributes.name} size="base"/>)}
         </ul>
       </Main>
     </FrozenRouter>

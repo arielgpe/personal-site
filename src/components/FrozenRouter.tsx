@@ -18,14 +18,14 @@ export const FrozenRouter = ({
     <AnimatePresence>
       <motion.div
         key={pathname}
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        exit={{opacity: 0}}
-        transition={{duration: 0.4, type: 'tween'}}
+        initial={{y: 50}}
+        animate={{y: 0}}
+        exit={{y: 0}}
+        transition={{type: "spring", stiffness: 75 }}
       >
-        <LayoutRouterContext.Provider value={frozen}>
+        {/*<LayoutRouterContext.Provider value={frozen}>*/}
           {children}
-        </LayoutRouterContext.Provider>
+        {/*</LayoutRouterContext.Provider>*/}
       </motion.div>
     </AnimatePresence>
 

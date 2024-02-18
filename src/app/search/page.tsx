@@ -22,37 +22,39 @@ const Search = () => {
     500,
   );
 
-  useEffect(() => {
-    const searchUrl = new URLSearchParams(window.location.search);
-    const searchStr = searchUrl.get('q');
-    if (searchStr) setInputVal(searchStr);
-
-    const getData = async () => {
-      const featured = await strapi.find<any>('posts', {
+  const getData = async (searchTerm: string | null) => {
+    if (searchTerm && searchTerm.length > 2) {
+      const posts = await strapi.find<any>('posts', {
         sort: 'publishedAt:desc', populate: '*', filters: {
           $or: [
             {
               title: {
-                $containsi: debouncedVendorNameSearchTerm,
+                $containsi: searchTerm,
               }
             },
             {
               description: {
-                $containsi: debouncedVendorNameSearchTerm,
+                $containsi: searchTerm,
               }
             }
           ]
         },
       });
-      setPosts(featured.data);
-    };
 
-    if (debouncedVendorNameSearchTerm.length > 2) {
-      getData();
+      setPosts(posts.data);
     } else {
       setPosts([]);
     }
+  };
 
+  useEffect(() => {
+    const searchUrl = new URLSearchParams(window.location.search);
+    const searchStr = searchUrl.get('q');
+    if (searchStr) setInputVal(searchStr);
+  }, []);
+
+  useEffect(() => {
+    getData(debouncedVendorNameSearchTerm);
   }, [debouncedVendorNameSearchTerm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = async (e: React.FormEvent<HTMLInputElement>) => {

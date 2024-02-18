@@ -50,7 +50,7 @@ export default function RootLayout({
       <body className={IBMPlexMono.variable}>
         <NextThemesProvider>
           <main className={'theme-light dark:theme-dark flex flex-col min-h-screen'}>
-              <Header/>
+            <Header/>
             {children}
             <Footer/>
           </main>
