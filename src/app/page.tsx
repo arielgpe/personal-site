@@ -68,7 +68,6 @@ const Home = () => {
               title="RSS Feed"
             >
               <IconRss className={'rss-icon'}/>
-              <span className="sr-only">RSS Feed</span>
             </a>
             <p>
               I&apos;m a full stack developer with over 10 years of experience with commercial level applications.
