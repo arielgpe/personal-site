@@ -2,7 +2,7 @@ import Rss from 'rss';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 
-const PROD_URL = 'http://127.0.0.1:3000' || '';
+const PROD_URL = process.env.STRAPI_TOKEN || '';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
 const STRAPI_URL = process.env.STRAPI_URL || '';
 
