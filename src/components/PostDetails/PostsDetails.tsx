@@ -100,7 +100,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
           </article>
 
           <ul className="my-8">
-            {currentPost.attributes.tags.data.map(tag => <Tag key={tag.id} tag={tag.attributes.name}/>)}
+            {currentPost.attributes.tags.data.map(tag => <Tag key={tag.id} tag={tag.attributes.name} size={'sm'}/>)}
           </ul>
           <div
             className="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"

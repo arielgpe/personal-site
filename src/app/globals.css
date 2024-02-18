@@ -129,11 +129,11 @@
   }
 
   .about-md img {
-    @apply w-40 h-60 object-cover rounded-lg mx-2;
+    @apply w-40 h-60 object-cover rounded-xl my-4 mx-auto sm:my-0 sm:mr-3;
   }
 
   .about-md p {
-    @apply inline-flex;
+    @apply block sm:inline-flex;
   }
 
   .not-found-wrapper {

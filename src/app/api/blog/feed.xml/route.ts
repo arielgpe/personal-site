@@ -27,8 +27,6 @@ export const GET = async () => {
     });
     const posts = await response.json();
 
-    console.log('posts.data?', posts.data);
-
     posts.data.forEach((post: ContentType<Post>) => {
       feed.item({
         title: post.attributes.title,
