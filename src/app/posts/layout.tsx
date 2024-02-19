@@ -16,7 +16,7 @@ export default function PageLayout({
 }>) {
   return (
     <main className={'flex flex-col'}>
-      <section className={'animate-fade-in'}>{children}</section>
+      <section>{children}</section>
     </main>
   );
 }

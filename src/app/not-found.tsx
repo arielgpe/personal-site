@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const notFound = () => {
   return (
     <main className={'flex flex-col mt-auto'}>
-      <section className={'animate-fade-in'}>
+      <section>
         <main id="main-content">
           <div className="not-found-wrapper">
             <h1 aria-label="404 Not Found">404</h1>

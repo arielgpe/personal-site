@@ -64,6 +64,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
     });
   };
 
+
   return (
     isNotFound ? (
         notFound()
@@ -75,7 +76,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
         <div className="mx-auto flex w-full max-w-6xl justify-start px-2">
           <button
             className="focus-outline mb-2 mt-8 flex hover:opacity-75"
-            onClick={() => (history.length === 1) ? router.replace('/') : router.back()}
+            onClick={() => router.replace('/posts')}
           >
             <svg xmlns="http://www.w3.org/2000/svg"
             >

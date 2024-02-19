@@ -14,7 +14,7 @@ export default function PageLayout({
 }>) {
   return (
     <main className={'flex flex-col'}>
-      <section className={'animate-fade-in flex-auto'}>
+      <section className={'flex-auto'}>
         <Breadcrumbs/>
         {children}
       </section>
