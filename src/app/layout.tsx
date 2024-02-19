@@ -31,8 +31,13 @@ export const metadata: Metadata = {
       url: PROD_URL
     }
   ],
+  openGraph: {
+    type: 'website',
+    url: PROD_URL
+  },
   keywords: ['Next.js', 'React', 'Javascript', 'Html', 'Css', 'Programming'],
   alternates: {
+    canonical: '/',
     types: {
       'application/rss+xml': `${PROD_URL}/api/blog/feed.xml`,
     }
@@ -47,16 +52,16 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={IBMPlexMono.variable}>
-        <NextThemesProvider>
-          <main className={'theme-light dark:theme-dark flex flex-col min-h-screen'}>
-            <Header/>
-            {children}
-            <Footer/>
-          </main>
-        </NextThemesProvider>
-        <GoogleAnalytics gaId={GA_MEASUREMENT_ID}/>
-      </body>
+    <body className={IBMPlexMono.variable}>
+    <NextThemesProvider>
+      <main className={'theme-light dark:theme-dark flex flex-col min-h-screen'}>
+        <Header/>
+        {children}
+        <Footer/>
+      </main>
+    </NextThemesProvider>
+    <GoogleAnalytics gaId={GA_MEASUREMENT_ID}/>
+    </body>
     </html>
   );
 }
