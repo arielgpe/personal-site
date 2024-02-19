@@ -14,6 +14,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/search*'],
       },
     ],
-    sitemap: `${PROD_URL}/sitemap.xml`,
+    sitemap: [`${PROD_URL}/sitemap.xml`, `${PROD_URL}/posts/sitemap/1.xml`],
   };
 }
