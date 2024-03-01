@@ -30,7 +30,7 @@ export const Card = ({href, frontmatter, secHeading = true}: Props) => {
           <h3 {...headerProps}>{frontmatter.title}</h3>
         )}
       </LinkButton>
-      <Datetime pubDatetime={frontmatter.createdAt} modDatetime={frontmatter.updatedAt}/>
+      <Datetime pubDatetime={frontmatter.publishedAt} modDatetime={frontmatter.updatedAt}/>
       <p className={'!mb-0'}>
         {frontmatter.description}
       </p>

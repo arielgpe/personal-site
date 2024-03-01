@@ -90,7 +90,7 @@ export const PostsDetails = ({params}: { params: { slug: string } }) => {
         <main id="main-content">
           <h1 className="post-title">{currentPost.attributes.title}</h1>
           <Datetime
-            pubDatetime={currentPost.attributes.createdAt}
+            pubDatetime={currentPost.attributes.publishedAt}
             modDatetime={currentPost.attributes.updatedAt}
             size="lg"
             className="my-2"
