@@ -11,43 +11,64 @@ import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
 import { FrozenRouter } from '@/components/FrozenRouter';
 import { IconRss } from '@tabler/icons-react';
+import { getStrapiData } from '@/utils/getFetchClient';
 
 const PROD_URL = process.env.PROD_URL;
 
 const Home = () => {
-  const strapi = getStrapiClient();
-
   const [featuredPosts, setFeaturedPosts] = useState<ContentType<Post>[]>([]);
   const [recentPosts, setRecentPosts] = useState<ContentType<Post>[]>([]);
 
   useEffect(() => {
     const getData = async () => {
-      const featured = await strapi.find<any>('posts', {
-        sort: 'publishedAt:desc', populate: '*', filters: {
-          featured: {
-            $eq: true
+      const featuredQuery = `{
+        posts(sort: ["publishedAt:desc"], filters: {featured: {eq: true}}, pagination: {page: 1, pageSize: 3}) {
+          data {
+            id
+            attributes {
+              slug
+              title
+              description
+              publishedAt
+              updatedAt
+              tags {
+                data {
+                  attributes {
+                    name
+                  }
+                }
+              }
+            }
           }
-        },
-        pagination: {
-          page: 1,
-          pageSize: 3
         }
-      });
+      }`;
 
-      const nonFeatured = await strapi.find<any>('posts', {
-        sort: 'publishedAt:desc', populate: '*', filters: {
-          featured: {
-            $eq: false
+      const nonFeaturedQuery = `{
+        posts(sort: ["publishedAt:desc"], filters: {featured: {eq: false}}, pagination: {page: 1, pageSize: 4}) {
+          data {
+            id
+            attributes {
+              slug
+              title
+              description
+              publishedAt
+              updatedAt
+              tags {
+                data {
+                  attributes {
+                    name
+                  }
+                }
+              }
+            }
           }
-        },
-        pagination: {
-          page: 1,
-          pageSize: 4
         }
-      });
+      }`;
 
-      setFeaturedPosts(featured.data);
-      setRecentPosts(nonFeatured.data);
+      const featured = await getStrapiData(featuredQuery);
+      const nonFeatured = await getStrapiData(nonFeaturedQuery);
+      setFeaturedPosts(featured.posts.data);
+      setRecentPosts(nonFeatured.posts.data);
     };
 
     getData();

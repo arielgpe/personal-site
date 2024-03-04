@@ -5,13 +5,12 @@ import { Card } from '@/components/Card/Card';
 import { useEffect, useRef, useState } from 'react';
 import { ContentType } from '@/interfaces/Strapi';
 import { Post } from '@/interfaces/Posts';
-import { getStrapiClient } from '@/utils/getStrapiClient';
 import { useDebounce } from '@/utils/useDebounce';
 import { FrozenRouter } from '@/components/FrozenRouter';
 import { useRouter } from 'next/navigation';
+import { getStrapiData } from '@/utils/getFetchClient';
 
 const Search = () => {
-  const strapi = getStrapiClient();
   const [posts, setPosts] = useState<ContentType<Post>[]>([]);
   const router = useRouter();
 
@@ -24,24 +23,30 @@ const Search = () => {
 
   const getData = async (searchTerm: string | null) => {
     if (searchTerm && searchTerm.length > 2) {
-      const posts = await strapi.find<any>('posts', {
-        sort: 'publishedAt:desc', populate: '*', filters: {
-          $or: [
-            {
-              title: {
-                $containsi: searchTerm,
-              }
-            },
-            {
-              description: {
-                $containsi: searchTerm,
+
+      const query = `{
+        posts(sort: ["publishedAt:desc"], filters: {or: [{title: {containsi: "${searchTerm}"}}, {description: {containsi: "${searchTerm}"}}]}) {
+          data {
+            id
+            attributes {
+              title
+              description
+              publishedAt
+              updatedAt
+              tags {
+                data {
+                  attributes {
+                    name
+                  }
+                }
               }
             }
-          ]
-        },
-      });
+          }
+        }
+      }`;
 
-      setPosts(posts.data);
+      const data = await getStrapiData(query);
+      setPosts(data.posts.data);
     } else {
       setPosts([]);
     }
@@ -94,7 +99,7 @@ const Search = () => {
           />
         </label>
 
-        {inputVal.length > 1 && (
+        {inputVal.length > 2 && (
           <div className="mt-8">
             Found {posts?.length}
             {posts?.length && posts?.length === 1

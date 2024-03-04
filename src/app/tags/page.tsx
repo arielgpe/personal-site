@@ -7,20 +7,27 @@ import { Tag } from '@/components/Tag/Tag';
 import { ContentType } from '@/interfaces/Strapi';
 import { Tag as ITag } from '@/interfaces/Tags';
 import { FrozenRouter } from '@/components/FrozenRouter';
+import { getStrapiData } from '@/utils/getFetchClient';
 
 const Tags = () => {
-  const strapi = getStrapiClient();
   const [tags, setTags] = useState<ContentType<ITag>[]>([]);
 
 
   useEffect(() => {
     const getData = async () => {
+      const query = `{
+        tags {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
+      }`;
 
-      const tags = await strapi.find<any>('tags', {
-        sort: 'updatedAt:desc'
-      });
-
-      setTags(tags.data);
+      const data = await getStrapiData(query);
+      setTags(data.tags.data);
     };
 
     getData();

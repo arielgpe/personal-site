@@ -9,18 +9,25 @@ import Markdown from 'react-markdown';
 import { LinkRenderer } from '@/components/LinkRenderer';
 import { FrozenRouter } from '@/components/FrozenRouter';
 import { Hr } from '@/components/Hr/Hr';
+import { getStrapiData } from '@/utils/getFetchClient';
 
 const About = () => {
-  const strapi = getStrapiClient();
   const [about, setAbout] = useState<any>();
 
   useEffect(() => {
     const getData = async () => {
-      const about = await strapi.find<any>('about', {
-        populate: '*'
-      });
+      const query = `{
+        about {
+          data {
+            attributes {
+              body
+            }
+          }
+        }
+      }`;
 
-      setAbout(about.data);
+      const about = await getStrapiData(query);
+      setAbout(about.about.data);
     };
 
     getData();
